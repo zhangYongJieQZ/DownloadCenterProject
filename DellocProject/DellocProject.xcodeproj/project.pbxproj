@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C14257151CDD56920079FB0C /* FileDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C14257101CDD56920079FB0C /* FileDownloadManager.m */; settings = {ASSET_TAGS = (); }; };
+		C14257161CDD56920079FB0C /* FileDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C14257121CDD56920079FB0C /* FileDownloadOperation.m */; settings = {ASSET_TAGS = (); }; };
+		C14257171CDD56920079FB0C /* UIButton+Download.m in Sources */ = {isa = PBXBuildFile; fileRef = C14257141CDD56920079FB0C /* UIButton+Download.m */; settings = {ASSET_TAGS = (); }; };
+		C142571A1CDD56A60079FB0C /* RootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14257191CDD56A60079FB0C /* RootTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C1BFFC5C1CDC858800AE8516 /* SecTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BFFC5B1CDC858800AE8516 /* SecTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C1BFFC5F1CDC885200AE8516 /* DownSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BFFC5E1CDC885200AE8516 /* DownSubTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		C1D628D61CD987C70063F38B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628D51CD987C70063F38B /* main.m */; };
@@ -15,14 +19,10 @@
 		C1D628DF1CD987C70063F38B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D628DD1CD987C70063F38B /* Main.storyboard */; };
 		C1D628E11CD987C70063F38B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1D628E01CD987C70063F38B /* Assets.xcassets */; };
 		C1D628E41CD987C70063F38B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D628E21CD987C70063F38B /* LaunchScreen.storyboard */; };
-		C1D628F41CD98CBB0063F38B /* FileDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628EF1CD98CBA0063F38B /* FileDownloadManager.m */; settings = {ASSET_TAGS = (); }; };
-		C1D628F51CD98CBB0063F38B /* FileDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628F11CD98CBB0063F38B /* FileDownloadOperation.m */; settings = {ASSET_TAGS = (); }; };
-		C1D628F61CD98CBB0063F38B /* UIButton+Download.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628F31CD98CBB0063F38B /* UIButton+Download.m */; settings = {ASSET_TAGS = (); }; };
 		C1D628F91CD98D220063F38B /* CommonMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628F81CD98D220063F38B /* CommonMethod.m */; settings = {ASSET_TAGS = (); }; };
 		C1D628FC1CD98D3B0063F38B /* NSString+CommonMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628FB1CD98D3B0063F38B /* NSString+CommonMethod.m */; settings = {ASSET_TAGS = (); }; };
 		C1D688DB1CDACD420004BB82 /* FMDBObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D688DA1CDACD420004BB82 /* FMDBObject.m */; settings = {ASSET_TAGS = (); }; };
 		C1D688DF1CDB30730004BB82 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D688DE1CDB30720004BB82 /* libsqlite3.0.tbd */; };
-		C1D688E51CDB435F0004BB82 /* RootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D688E41CDB435F0004BB82 /* RootTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C1D688EE1CDB45760004BB82 /* DownLoadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D688ED1CDB45760004BB82 /* DownLoadTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		C1D688F11CDB477A0004BB82 /* GetVideoDataTools.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D688F01CDB477A0004BB82 /* GetVideoDataTools.m */; settings = {ASSET_TAGS = (); }; };
 		C1D688F61CDB48380004BB82 /* VideoSid.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D688F31CDB48380004BB82 /* VideoSid.m */; settings = {ASSET_TAGS = (); }; };
@@ -34,6 +34,14 @@
 		0B6A58C28F4903253C00EF5B /* Pods-DellocProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DellocProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DellocProject/Pods-DellocProject.debug.xcconfig"; sourceTree = "<group>"; };
 		69B515D80B8D8D66FA229439 /* libPods-DellocProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DellocProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A935936B7B866357D6E62371 /* Pods-DellocProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DellocProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-DellocProject/Pods-DellocProject.release.xcconfig"; sourceTree = "<group>"; };
+		C142570F1CDD56920079FB0C /* FileDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloadManager.h; sourceTree = "<group>"; };
+		C14257101CDD56920079FB0C /* FileDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDownloadManager.m; sourceTree = "<group>"; };
+		C14257111CDD56920079FB0C /* FileDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloadOperation.h; sourceTree = "<group>"; };
+		C14257121CDD56920079FB0C /* FileDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDownloadOperation.m; sourceTree = "<group>"; };
+		C14257131CDD56920079FB0C /* UIButton+Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Download.h"; sourceTree = "<group>"; };
+		C14257141CDD56920079FB0C /* UIButton+Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Download.m"; sourceTree = "<group>"; };
+		C14257181CDD56A60079FB0C /* RootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTableViewController.h; sourceTree = "<group>"; };
+		C14257191CDD56A60079FB0C /* RootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTableViewController.m; sourceTree = "<group>"; };
 		C1BFFC5A1CDC858800AE8516 /* SecTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecTableViewController.h; sourceTree = "<group>"; };
 		C1BFFC5B1CDC858800AE8516 /* SecTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecTableViewController.m; sourceTree = "<group>"; };
 		C1BFFC5D1CDC885200AE8516 /* DownSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownSubTableViewCell.h; sourceTree = "<group>"; };
@@ -48,12 +56,6 @@
 		C1D628E01CD987C70063F38B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1D628E31CD987C70063F38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1D628E51CD987C70063F38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1D628EE1CD98CBA0063F38B /* FileDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileDownloadManager.h; path = DellocProject/FileDownloadManager.h; sourceTree = SOURCE_ROOT; };
-		C1D628EF1CD98CBA0063F38B /* FileDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileDownloadManager.m; path = DellocProject/FileDownloadManager.m; sourceTree = SOURCE_ROOT; };
-		C1D628F01CD98CBA0063F38B /* FileDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileDownloadOperation.h; path = DellocProject/FileDownloadOperation.h; sourceTree = SOURCE_ROOT; };
-		C1D628F11CD98CBB0063F38B /* FileDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileDownloadOperation.m; path = DellocProject/FileDownloadOperation.m; sourceTree = SOURCE_ROOT; };
-		C1D628F21CD98CBB0063F38B /* UIButton+Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Download.h"; path = "../UIButton+Download.h"; sourceTree = "<group>"; };
-		C1D628F31CD98CBB0063F38B /* UIButton+Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Download.m"; path = "../UIButton+Download.m"; sourceTree = "<group>"; };
 		C1D628F71CD98D220063F38B /* CommonMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonMethod.h; path = ../CommonMethod.h; sourceTree = "<group>"; };
 		C1D628F81CD98D220063F38B /* CommonMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonMethod.m; path = ../CommonMethod.m; sourceTree = "<group>"; };
 		C1D628FA1CD98D3B0063F38B /* NSString+CommonMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CommonMethod.h"; path = "../NSString+CommonMethod.h"; sourceTree = "<group>"; };
@@ -62,8 +64,6 @@
 		C1D688DA1CDACD420004BB82 /* FMDBObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDBObject.m; path = ../FMDBObject.m; sourceTree = "<group>"; };
 		C1D688DD1CDAD7E60004BB82 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C1D688DE1CDB30720004BB82 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		C1D688E31CDB435F0004BB82 /* RootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootTableViewController.h; path = ../../RootTableViewController.h; sourceTree = "<group>"; };
-		C1D688E41CDB435F0004BB82 /* RootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootTableViewController.m; path = ../../RootTableViewController.m; sourceTree = "<group>"; };
 		C1D688EC1CDB45760004BB82 /* DownLoadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadTableViewCell.h; sourceTree = "<group>"; };
 		C1D688ED1CDB45760004BB82 /* DownLoadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadTableViewCell.m; sourceTree = "<group>"; };
 		C1D688EF1CDB477A0004BB82 /* GetVideoDataTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVideoDataTools.h; sourceTree = "<group>"; };
@@ -176,12 +176,12 @@
 		C1D688E71CDB45170004BB82 /* FileDownload */ = {
 			isa = PBXGroup;
 			children = (
-				C1D628F21CD98CBB0063F38B /* UIButton+Download.h */,
-				C1D628F31CD98CBB0063F38B /* UIButton+Download.m */,
-				C1D628EE1CD98CBA0063F38B /* FileDownloadManager.h */,
-				C1D628EF1CD98CBA0063F38B /* FileDownloadManager.m */,
-				C1D628F01CD98CBA0063F38B /* FileDownloadOperation.h */,
-				C1D628F11CD98CBB0063F38B /* FileDownloadOperation.m */,
+				C142570F1CDD56920079FB0C /* FileDownloadManager.h */,
+				C14257101CDD56920079FB0C /* FileDownloadManager.m */,
+				C14257111CDD56920079FB0C /* FileDownloadOperation.h */,
+				C14257121CDD56920079FB0C /* FileDownloadOperation.m */,
+				C14257131CDD56920079FB0C /* UIButton+Download.h */,
+				C14257141CDD56920079FB0C /* UIButton+Download.m */,
 			);
 			path = FileDownload;
 			sourceTree = "<group>";
@@ -224,8 +224,8 @@
 		C1D688EB1CDB455C0004BB82 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C1D688E31CDB435F0004BB82 /* RootTableViewController.h */,
-				C1D688E41CDB435F0004BB82 /* RootTableViewController.m */,
+				C14257181CDD56A60079FB0C /* RootTableViewController.h */,
+				C14257191CDD56A60079FB0C /* RootTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,21 +352,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1D628F61CD98CBB0063F38B /* UIButton+Download.m in Sources */,
 				C1D628FC1CD98D3B0063F38B /* NSString+CommonMethod.m in Sources */,
 				C1D688F71CDB48380004BB82 /* Video.m in Sources */,
 				C1D688DB1CDACD420004BB82 /* FMDBObject.m in Sources */,
 				C1D628DC1CD987C70063F38B /* ViewController.m in Sources */,
 				C1D688EE1CDB45760004BB82 /* DownLoadTableViewCell.m in Sources */,
+				C14257171CDD56920079FB0C /* UIButton+Download.m in Sources */,
+				C14257151CDD56920079FB0C /* FileDownloadManager.m in Sources */,
 				C1BFFC5F1CDC885200AE8516 /* DownSubTableViewCell.m in Sources */,
 				C1D628F91CD98D220063F38B /* CommonMethod.m in Sources */,
+				C14257161CDD56920079FB0C /* FileDownloadOperation.m in Sources */,
 				C1D628D91CD987C70063F38B /* AppDelegate.m in Sources */,
 				C1D688F61CDB48380004BB82 /* VideoSid.m in Sources */,
-				C1D628F51CD98CBB0063F38B /* FileDownloadOperation.m in Sources */,
 				C1D688F11CDB477A0004BB82 /* GetVideoDataTools.m in Sources */,
-				C1D688E51CDB435F0004BB82 /* RootTableViewController.m in Sources */,
+				C142571A1CDD56A60079FB0C /* RootTableViewController.m in Sources */,
 				C1BFFC5C1CDC858800AE8516 /* SecTableViewController.m in Sources */,
-				C1D628F41CD98CBB0063F38B /* FileDownloadManager.m in Sources */,
 				C1D628D61CD987C70063F38B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

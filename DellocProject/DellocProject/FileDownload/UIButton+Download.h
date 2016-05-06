@@ -13,7 +13,6 @@
 @property (nonatomic, strong)NSString               *downloadUrl;
 @property (nonatomic, assign)FileDownloadStatus     downloadStatus;
 
-- (void)normalStatusWithURLString:(NSString *)urlString;
 - (void)buttonClick;
 - (void)calculatePercentWithDownloadSize:(long long)downloadSize fileSize:(long long)fileSize;
 

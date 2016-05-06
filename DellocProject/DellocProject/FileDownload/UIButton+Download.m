@@ -91,23 +91,6 @@ static NSString *percentString         = @"percentString";
          [self setNeedsDisplay];
     }
 }
-
-- (void)normalStatusWithURLString:(NSString *)urlString{
-    self.downloadUrl = urlString;
-    
-    [[FMDBObject shareInstance]searchDataWithKeyAttributesDit:@{FMDownloadUrl:urlString} block:^(NSArray *dataArray) {
-        if (dataArray.count > 0) {
-//            NSLog(@"dataArray = %@",dataArray);
-            for (NSDictionary *dit in dataArray) {
-                if ([[dit valueForKey:FMDownloadUrl] isEqualToString:urlString]) {
-                    self.downloadStatus = [[dit valueForKey:FMDownloadStatus]integerValue];
-                    [self calculatePercentWithDownloadSize:[[dit valueForKey:FMDownloadSize]longLongValue] fileSize:[[dit valueForKey:FMFileSize]longLongValue]];
-                }
-            }
-        }
-    }];
-}
-
 - (void)buttonClick{
     switch (self.downloadStatus) {
         case FileDownloadNormal:{
