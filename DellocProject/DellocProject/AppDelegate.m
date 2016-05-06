@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "FMDBObject.h"
 @interface AppDelegate ()
 
 @end
@@ -16,6 +16,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //初始化时遍历数据库。。修正因退出程序而造成的状态不正确问题
+    [[FMDBObject shareInstance]searchAllDataWithblock:^(NSArray *dataArray) {
+        if (dataArray.count > 0) {
+            for (NSDictionary *dit in dataArray) {
+                if ([[dit valueForKey:FMDownloadStatus]integerValue] == 2 || [[dit valueForKey:FMDownloadStatus]integerValue] == 1) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [[FMDBObject shareInstance]updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:5]} andSearchConditions:@{FMDownloadUrl:[dit valueForKey:FMDownloadUrl]} resultBlock:^(BOOL result, NSError *error) {
+                            
+                        }];
+                    });
+                }
+            }
+        }
+    }];
     // Override point for customization after application launch.
     return YES;
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1BFFC5C1CDC858800AE8516 /* SecTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BFFC5B1CDC858800AE8516 /* SecTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C1BFFC5F1CDC885200AE8516 /* DownSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BFFC5E1CDC885200AE8516 /* DownSubTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		C1D628D61CD987C70063F38B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628D51CD987C70063F38B /* main.m */; };
 		C1D628D91CD987C70063F38B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628D81CD987C70063F38B /* AppDelegate.m */; };
 		C1D628DC1CD987C70063F38B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D628DB1CD987C70063F38B /* ViewController.m */; };
@@ -32,6 +34,10 @@
 		0B6A58C28F4903253C00EF5B /* Pods-DellocProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DellocProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DellocProject/Pods-DellocProject.debug.xcconfig"; sourceTree = "<group>"; };
 		69B515D80B8D8D66FA229439 /* libPods-DellocProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DellocProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A935936B7B866357D6E62371 /* Pods-DellocProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DellocProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-DellocProject/Pods-DellocProject.release.xcconfig"; sourceTree = "<group>"; };
+		C1BFFC5A1CDC858800AE8516 /* SecTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecTableViewController.h; sourceTree = "<group>"; };
+		C1BFFC5B1CDC858800AE8516 /* SecTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecTableViewController.m; sourceTree = "<group>"; };
+		C1BFFC5D1CDC885200AE8516 /* DownSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownSubTableViewCell.h; sourceTree = "<group>"; };
+		C1BFFC5E1CDC885200AE8516 /* DownSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownSubTableViewCell.m; sourceTree = "<group>"; };
 		C1D628D11CD987C70063F38B /* DellocProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DellocProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D628D51CD987C70063F38B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C1D628D71CD987C70063F38B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,6 +105,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C1BFFC591CDC857300AE8516 /* SecTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C1BFFC5A1CDC858800AE8516 /* SecTableViewController.h */,
+				C1BFFC5B1CDC858800AE8516 /* SecTableViewController.m */,
+				C1BFFC5D1CDC885200AE8516 /* DownSubTableViewCell.h */,
+				C1BFFC5E1CDC885200AE8516 /* DownSubTableViewCell.m */,
+			);
+			path = SecTableViewController;
+			sourceTree = "<group>";
+		};
 		C1D628C81CD987C70063F38B = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +137,7 @@
 		C1D628D31CD987C70063F38B /* DellocProject */ = {
 			isa = PBXGroup;
 			children = (
+				C1BFFC591CDC857300AE8516 /* SecTableViewController */,
 				C1D688E81CDB45260004BB82 /* Library */,
 				C1D688E71CDB45170004BB82 /* FileDownload */,
 				C1D688E61CDB450C0004BB82 /* RootViewController */,
@@ -340,12 +358,14 @@
 				C1D688DB1CDACD420004BB82 /* FMDBObject.m in Sources */,
 				C1D628DC1CD987C70063F38B /* ViewController.m in Sources */,
 				C1D688EE1CDB45760004BB82 /* DownLoadTableViewCell.m in Sources */,
+				C1BFFC5F1CDC885200AE8516 /* DownSubTableViewCell.m in Sources */,
 				C1D628F91CD98D220063F38B /* CommonMethod.m in Sources */,
 				C1D628D91CD987C70063F38B /* AppDelegate.m in Sources */,
 				C1D688F61CDB48380004BB82 /* VideoSid.m in Sources */,
 				C1D628F51CD98CBB0063F38B /* FileDownloadOperation.m in Sources */,
 				C1D688F11CDB477A0004BB82 /* GetVideoDataTools.m in Sources */,
 				C1D688E51CDB435F0004BB82 /* RootTableViewController.m in Sources */,
+				C1BFFC5C1CDC858800AE8516 /* SecTableViewController.m in Sources */,
 				C1D628F41CD98CBB0063F38B /* FileDownloadManager.m in Sources */,
 				C1D628D61CD987C70063F38B /* main.m in Sources */,
 			);

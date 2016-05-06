@@ -19,6 +19,7 @@
 @property (nonatomic, strong)NSMutableData              *data;
 @property (nonatomic, assign)long long                  fileSize;
 @property (nonatomic, assign)long long                  originSize;//上一秒的大小,用来计算下载速度
+@property (nonatomic, assign)BOOL                       hasCancel;
 
 @property (nonatomic, strong)NSTimer                    *timer;
 
@@ -44,6 +45,7 @@
         NSData *fileData = [NSData dataWithContentsOfFile:[self downloadFilePath]];
         if (fileData.length && fileData) {
             _data = [[NSMutableData alloc] initWithData:fileData];
+            _hasCancel = YES;
         }else{
             _data = [[NSMutableData alloc] init];
         }
@@ -100,6 +102,10 @@
 
 - (void)repeatDownloadSpeed{
     if (_progressBlock) {
+        if (_hasCancel) {//暂停下载会造成网速错误
+            _originSize = _data.length;
+            _hasCancel = NO;
+        }
         _progressBlock(_data.length, _fileSize,_originSize);
     }
     _originSize = _data.length;

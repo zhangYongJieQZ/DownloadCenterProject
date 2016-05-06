@@ -14,6 +14,7 @@
 - (void)awakeFromNib {
     // Initialization code
 }
+
 //注册通知
 - (void)registerNotificationCenter:(NSString *)urlString inIndexPath:(NSInteger)path{
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(startDownload:) name:[NSString stringWithFormat:@"%@%@",FileDownloadStartNotification,urlString] object:nil];
@@ -29,6 +30,7 @@
                 if ([[dit valueForKey:FMDownloadUrl] isEqualToString:urlString]) {
                     mainQueue(^{
                         self.downloadButton.downloadStatus = [[dit valueForKey:FMDownloadStatus]integerValue];
+                        
                         [self.downloadButton calculatePercentWithDownloadSize:[[dit valueForKey:FMDownloadSize]longLongValue] fileSize:[[dit valueForKey:FMFileSize]longLongValue]];
                     });
                 }
@@ -53,6 +55,7 @@
 
 - (void)pauseDownload:(NSNotification *)notification{
     self.downloadButton.downloadStatus = FileDownloadPause;
+    self.sppedLaebl.text = @"0KB/S";
 }
 
 - (void)finishedDownload:(NSNotification *)notification{
@@ -75,7 +78,11 @@
     }else if (value > 1024){
         speedString = [NSString stringWithFormat:@"%.2fKB/S",value / 1024.0];
     }else{
-        speedString = [NSString stringWithFormat:@"%dB/S",value];
+        if (value == 0) {
+            speedString = @"0KB/S";
+        }else{
+            speedString = [NSString stringWithFormat:@"%dB/S",value];
+        }
     }
     mainQueue(^{
         [self.downloadButton calculatePercentWithDownloadSize:dataSize fileSize:fileSize];

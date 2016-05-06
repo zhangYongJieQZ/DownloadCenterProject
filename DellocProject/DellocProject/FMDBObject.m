@@ -46,7 +46,6 @@ static FMDBObject *fmdbOjc = nil;
             attributesStr = [attributesStr substringToIndex:attributesStr.length - 1];
         }
         NSString *createSQLStr = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (%@);",tableName,attributesStr];
-        NSLog(@"createSQLStr = %@",createSQLStr);
         //3.打开数据库
         [self.dbQueue inDatabase:^(FMDatabase *db) {
             if ([db open]) {
@@ -124,7 +123,6 @@ static FMDBObject *fmdbOjc = nil;
     if ([sqlString hasSuffix:@"and "]) {
         sqlString = [sqlString substringToIndex:sqlString.length - 4];
     }
-    NSLog(@"%@",sqlString);
     NSMutableArray *updateArray = [[NSMutableArray alloc] initWithArray:attributesDit.allValues];
     [updateArray addObjectsFromArray:conditionsDit.allValues];
     [self.dbQueue inDatabase:^(FMDatabase *db) {
