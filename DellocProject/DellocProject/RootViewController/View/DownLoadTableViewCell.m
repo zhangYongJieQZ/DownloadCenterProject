@@ -17,12 +17,15 @@
 
 //注册通知
 - (void)registerNotificationCenter:(NSString *)urlString inIndexPath:(NSInteger)path{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];//免得重用了。。会通知错乱
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(startDownload:) name:[NSString stringWithFormat:@"%@%@",FileDownloadStartNotification,urlString] object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pauseDownload:) name:[NSString stringWithFormat:@"%@%@",FileDownloadCancelNotification,urlString] object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(finishedDownload:) name:[NSString stringWithFormat:@"%@%@",FileDownloadFinishNotification,urlString] object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloading:) name:[NSString stringWithFormat:@"%@%@",FileDownloadingChangeNotification,urlString] object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadFailure:) name:[NSString stringWithFormat:@"%@%@",FileDownloadFailureNotification,urlString] object:nil];
     self.downloadButton.downloadUrl = urlString;
+    
     //初始化,从数据库中读取
     [[FMDBObject shareInstance]searchDataWithKeyAttributesDit:@{FMDownloadUrl:urlString} block:^(NSArray *dataArray) {
         if (dataArray.count > 0) {
