@@ -10,6 +10,7 @@
 
 @interface UIButton (Download)
 
+@property (nonatomic, assign)float  percent;
 @property (nonatomic, strong)NSString               *downloadUrl;
 @property (nonatomic, assign)FileDownloadStatus     downloadStatus;
 

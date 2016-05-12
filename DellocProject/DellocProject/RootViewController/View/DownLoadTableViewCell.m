@@ -25,15 +25,16 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloading:) name:[NSString stringWithFormat:@"%@%@",FileDownloadingChangeNotification,urlString] object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadFailure:) name:[NSString stringWithFormat:@"%@%@",FileDownloadFailureNotification,urlString] object:nil];
     self.downloadButton.downloadUrl = urlString;
-    
+    self.downloadButton.tag = path;
+    self.downloadButton.percent = 0;
     //初始化,从数据库中读取
+    
     [[FMDBObject shareInstance]searchDataWithKeyAttributesDit:@{FMDownloadUrl:urlString} block:^(NSArray *dataArray) {
         if (dataArray.count > 0) {
             for (NSDictionary *dit in dataArray) {
                 if ([[dit valueForKey:FMDownloadUrl] isEqualToString:urlString]) {
                     mainQueue(^{
                         self.downloadButton.downloadStatus = [[dit valueForKey:FMDownloadStatus]integerValue];
-                        
                         [self.downloadButton calculatePercentWithDownloadSize:[[dit valueForKey:FMDownloadSize]longLongValue] fileSize:[[dit valueForKey:FMFileSize]longLongValue]];
                     });
                 }

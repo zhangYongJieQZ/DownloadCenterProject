@@ -18,13 +18,12 @@ static NSString *percentString         = @"percentString";
 
 @interface UIButton ()
 
-@property (nonatomic, assign)float  percent;
-
 @end
 
 @implementation UIButton (Download)
 
 #pragma mark - property
+
 
 - (void)setPercent:(float)percent{
     objc_setAssociatedObject(self, &percentString, [NSNumber numberWithFloat:percent], OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -40,8 +39,8 @@ static NSString *percentString         = @"percentString";
         switch (downloadStatus) {
             case FileDownloadNormal:{
                 [self setTitle:@"任务" forState:UIControlStateNormal];
-                self.percent = 0;
-                [self setNeedsDisplay];
+//                self.percent = 0;
+//                [self setNeedsDisplay];
             }
                 break;
             case FileDownloadWait:{
@@ -86,10 +85,16 @@ static NSString *percentString         = @"percentString";
 
 
 - (void)calculatePercentWithDownloadSize:(long long)downloadSize fileSize:(long long)fileSize {
+    NSLog(@"%lld,%lld",downloadSize,fileSize);
     if (downloadSize!= 0 && fileSize != 0) {
         self.percent = (1.0 * downloadSize / fileSize);
-         [self setNeedsDisplay];
+    }else{
+        if (downloadSize == 0 && fileSize == 0) {
+            self.percent = 0;
+        }
     }
+    [self setNeedsDisplay];
+
 }
 - (void)buttonClick{
     switch (self.downloadStatus) {

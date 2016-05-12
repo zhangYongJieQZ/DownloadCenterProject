@@ -76,14 +76,12 @@
     return self.listArray.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentify = @"DownLoadTableViewCell";
     DownLoadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify forIndexPath:indexPath];
     Video *video = self.listArray[indexPath.row];
     [cell registerNotificationCenter:video.mp4_url inIndexPath:indexPath.row];
     cell.themeLabel.text = video.title;
-//    [cell.downloadButton normalStatusWithURLString: video.mp4_url];
     cell.sppedLaebl.text = @"0kb/s";
     [cell.downloadButton addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -96,12 +94,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Video *video = self.listArray[indexPath.row];
     NSString *path = [[CommonMethod createFileName:ZYJDownloadFile] stringByAppendingString:[NSString stringWithFormat:@"/%@",[video.mp4_url md5]]];
-    
     MPMoviePlayerViewController *moviePlayer = [ [ MPMoviePlayerViewController alloc]initWithContentURL:[NSURL fileURLWithPath:path]];
     [self presentMoviePlayerViewControllerAnimated:moviePlayer];
-//    [self.view addSubview:moviePlayer.view];
-    //    [self presentViewController:moviePlayer animated:YES completion:nil];
 }
-
 
 @end
