@@ -85,7 +85,7 @@ static NSString *percentString         = @"percentString";
 
 
 - (void)calculatePercentWithDownloadSize:(long long)downloadSize fileSize:(long long)fileSize {
-    NSLog(@"%lld,%lld",downloadSize,fileSize);
+//    NSLog(@"%lld,%lld",downloadSize,fileSize);
     if (downloadSize!= 0 && fileSize != 0) {
         self.percent = (1.0 * downloadSize / fileSize);
     }else{

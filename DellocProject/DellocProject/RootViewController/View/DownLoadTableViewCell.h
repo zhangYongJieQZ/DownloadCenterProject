@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
 @property (weak, nonatomic) IBOutlet UILabel *sppedLaebl;
 
-- (void)registerNotificationCenter:(NSString *)urlString inIndexPath:(NSInteger)path;
+- (void)registerNotificationCenter:(NSString *)urlString;
 
 @end

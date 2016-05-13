@@ -9,6 +9,11 @@
 #import "DownLoadTableViewCell.h"
 #import "UIButton+Download.h"
 #import "FMDBObject.h"
+
+@interface DownLoadTableViewCell ()
+@property (nonatomic, strong)NSString  *downloadUrl;
+@end
+
 @implementation DownLoadTableViewCell
 
 - (void)awakeFromNib {
@@ -16,7 +21,8 @@
 }
 
 //注册通知
-- (void)registerNotificationCenter:(NSString *)urlString inIndexPath:(NSInteger)path{
+- (void)registerNotificationCenter:(NSString *)urlString{
+    self.downloadUrl = urlString;
     [[NSNotificationCenter defaultCenter]removeObserver:self];//免得重用了。。会通知错乱
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(startDownload:) name:[NSString stringWithFormat:@"%@%@",FileDownloadStartNotification,urlString] object:nil];
@@ -25,7 +31,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloading:) name:[NSString stringWithFormat:@"%@%@",FileDownloadingChangeNotification,urlString] object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadFailure:) name:[NSString stringWithFormat:@"%@%@",FileDownloadFailureNotification,urlString] object:nil];
     self.downloadButton.downloadUrl = urlString;
-    self.downloadButton.tag = path;
     self.downloadButton.percent = 0;
     //初始化,从数据库中读取
     
@@ -35,6 +40,8 @@
                 if ([[dit valueForKey:FMDownloadUrl] isEqualToString:urlString]) {
                     mainQueue(^{
                         self.downloadButton.downloadStatus = [[dit valueForKey:FMDownloadStatus]integerValue];
+                        self.sppedLaebl.text = [dit valueForKey:FMDownloadSpeed];
+                        NSLog(@"self.speedlabel.text = %@",self.sppedLaebl.text);
                         [self.downloadButton calculatePercentWithDownloadSize:[[dit valueForKey:FMDownloadSize]longLongValue] fileSize:[[dit valueForKey:FMFileSize]longLongValue]];
                     });
                 }
@@ -88,6 +95,11 @@
             speedString = [NSString stringWithFormat:@"%dB/S",value];
         }
     }
+    
+    [[FMDBObject shareInstance]updateDataWithKeyAttributesDit:@{FMDownloadSpeed:speedString} andSearchConditions:@{FMDownloadUrl:self.downloadUrl} resultBlock:^(BOOL result, NSError *error) {
+        
+    }];
+    
     mainQueue(^{
         [self.downloadButton calculatePercentWithDownloadSize:dataSize fileSize:fileSize];
         self.sppedLaebl.text = speedString;

@@ -80,7 +80,7 @@
     static NSString *cellIdentify = @"DownLoadTableViewCell";
     DownLoadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify forIndexPath:indexPath];
     Video *video = self.listArray[indexPath.row];
-    [cell registerNotificationCenter:video.mp4_url inIndexPath:indexPath.row];
+    [cell registerNotificationCenter:video.mp4_url];
     cell.themeLabel.text = video.title;
     cell.sppedLaebl.text = @"0kb/s";
     [cell.downloadButton addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];

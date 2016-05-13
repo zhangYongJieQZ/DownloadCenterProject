@@ -116,7 +116,7 @@ static FileDownloadManager *fileDownloadManager = nil;
         if (dataArray.count == 0) {
             //需要延时,不然会造成同时访问FMDatabaseQueue报错
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.downloadSqlite insertWithKeyAttributesDit:@{FMDownloadUrl:urlString,FMDownloadSize:[NSNumber numberWithLongLong:0],FMFileSize:[NSNumber numberWithLongLong:0],FMDownloadStatus:[NSNumber numberWithInteger:1]} andResultBlock:^(BOOL result, NSError *error) {
+                [self.downloadSqlite insertWithKeyAttributesDit:@{FMDownloadUrl:urlString,FMDownloadSize:[NSNumber numberWithLongLong:0],FMFileSize:[NSNumber numberWithLongLong:0],FMDownloadStatus:[NSNumber numberWithInteger:1],FMDownloadSpeed:@"0KB/S"} andResultBlock:^(BOOL result, NSError *error) {
                     
                 }];
             });

@@ -166,7 +166,7 @@
     if(httpResponse && [httpResponse respondsToSelector:@selector(allHeaderFields)]){
         NSDictionary *httpResponseHeaderFields = [httpResponse allHeaderFields];
         _fileSize = [[httpResponseHeaderFields objectForKey:@"Content-Length"] longLongValue] + _data.length;
-        NSLog(@"%lld",_fileSize);
+//        NSLog(@"%lld",_fileSize);
     }
 }
 

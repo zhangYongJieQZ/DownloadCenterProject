@@ -23,7 +23,7 @@ static FMDBObject *fmdbOjc = nil;
     dispatch_once(&onceToken, ^{
         if (fmdbOjc == nil) {
             fmdbOjc = [[FMDBObject alloc] initWithTablePath:@"DownloadFile.sqlite" andTableName:@"DownloadFile" andKeyAttributesDit:@{
-                                                                                                                                                        FMDownloadUrl:FMText,FMDownloadSize:FMLongLong,FMFileSize:FMLongLong,FMDownloadStatus:FMInteger}];
+                                                                                                                                                        FMDownloadUrl:FMText,FMDownloadSize:FMLongLong,FMFileSize:FMLongLong,FMDownloadStatus:FMInteger,FMDownloadSpeed:FMText}];
         }
     });
     return fmdbOjc;

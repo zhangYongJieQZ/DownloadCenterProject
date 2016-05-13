@@ -24,7 +24,7 @@ static NSString *FMDownloadUrl = @"downloadUrl";
 static NSString *FMDownloadSize = @"downloadSize";
 static NSString *FMFileSize = @"fileSize";
 static NSString *FMDownloadStatus = @"downloadStatus";
-
+static NSString *FMDownloadSpeed = @"downloadSpeed";
 
 @interface FMDBObject : NSObject
 

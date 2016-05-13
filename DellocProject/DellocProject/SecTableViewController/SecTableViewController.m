@@ -62,7 +62,7 @@
     static NSString *cellIdentify = @"DownSubTableViewCell";
     DownSubTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentify forIndexPath:indexPath];
     Video *video = self.listArray[indexPath.row];
-    [cell registerNotificationCenter:video.mp4_url inIndexPath:indexPath.row];
+    [cell registerNotificationCenter:video.mp4_url];
     cell.themeLabel.text = video.title;
     //    [cell.downloadButton normalStatusWithURLString: video.mp4_url];
     cell.sppedLaebl.text = @"0kb/s";
