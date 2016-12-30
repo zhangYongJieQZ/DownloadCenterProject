@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "FMDBObject.h"
 @interface AppDelegate ()
-
+@property (strong ,nonatomic) NSArray *dataArray;
 @end
 
 @implementation AppDelegate
@@ -17,21 +17,39 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //初始化时遍历数据库。。修正因退出程序而造成的状态不正确问题
-    [[FMDBObject shareInstance]searchAllDataWithblock:^(NSArray *dataArray) {
-        if (dataArray.count > 0) {
-            for (NSDictionary *dit in dataArray) {
-                if ([[dit valueForKey:FMDownloadStatus]integerValue] == 2 || [[dit valueForKey:FMDownloadStatus]integerValue] == 1) {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[FMDBObject shareInstance]updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:5]} andSearchConditions:@{FMDownloadUrl:[dit valueForKey:FMDownloadUrl]} resultBlock:^(BOOL result, NSError *error) {
-                            
-                        }];
-                    });
-                }
-            }
-        }
-    }];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_async(group, queue, ^{
+            [self searchAllData];
+        });
+        dispatch_group_notify(group, queue, ^{
+            [self updateListData];
+        });
+    });
+    
     // Override point for customization after application launch.
     return YES;
+}
+
+- (void)searchAllData{
+    [[FMDBObject shareInstance]searchAllDataWithblock:^(NSArray *dataArray) {
+        _dataArray = dataArray;
+    }];
+}
+
+- (void)updateListData{
+    if (_dataArray.count > 0) {
+        for (NSDictionary *dit in _dataArray) {
+            if ([[dit valueForKey:FMDownloadStatus]integerValue] == 2 || [[dit valueForKey:FMDownloadStatus]integerValue] == 1) {
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [[FMDBObject shareInstance]updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:FileDownloadPause],FMDownloadSpeed:@""} andSearchConditions:@{FMDownloadUrl:[dit valueForKey:FMDownloadUrl]} resultBlock:^(BOOL result, NSError *error) {
+                        NSLog(@"result = %d",result);
+                    }];
+//                });
+            }
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

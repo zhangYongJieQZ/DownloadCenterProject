@@ -17,7 +17,7 @@
 #define mainQueue(block) dispatch_async(dispatch_get_main_queue(),block)
 
 typedef enum{
-    FileDownloadNormal,     //初始状态
+    FileDownloadNormal = 0,     //初始状态
     FileDownloadWait,       //等待中
     FileDownloading,        //下载中
     FileDownloadFinish,     //下载结束

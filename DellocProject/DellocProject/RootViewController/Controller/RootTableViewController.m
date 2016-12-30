@@ -12,8 +12,9 @@
 #import "UIButton+Download.h"
 #import "CommonMethod.h"
 #import "NSString+CommonMethod.h"
-#import <MediaPlayer/MediaPlayer.h>
 #import "SecTableViewController.h"
+#import <AVKit/AVKit.h>
+#import <AVFoundation/AVFoundation.h>
 #define listURL @"http://c.m.163.com/nc/video/home/0-10.html"
 
 @interface RootTableViewController ()
@@ -82,7 +83,7 @@
     Video *video = self.listArray[indexPath.row];
     [cell registerNotificationCenter:video.mp4_url];
     cell.themeLabel.text = video.title;
-    cell.sppedLaebl.text = @"0kb/s";
+    cell.sppedLaebl.text = @"";
     [cell.downloadButton addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
@@ -94,8 +95,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Video *video = self.listArray[indexPath.row];
     NSString *path = [[CommonMethod createFileName:ZYJDownloadFile] stringByAppendingString:[NSString stringWithFormat:@"/%@",[video.mp4_url md5]]];
-    MPMoviePlayerViewController *moviePlayer = [ [ MPMoviePlayerViewController alloc]initWithContentURL:[NSURL fileURLWithPath:path]];
-    [self presentMoviePlayerViewControllerAnimated:moviePlayer];
+    AVPlayerViewController *AVPlayerVC = [[AVPlayerViewController alloc] init];
+    AVPlayerVC.player = [[AVPlayer alloc] initWithURL:[NSURL fileURLWithPath:path]];
+    [self presentViewController:AVPlayerVC animated:YES completion:^{
+        [AVPlayerVC.player play];
+    }];
 }
 
 @end

@@ -177,7 +177,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    NSLog(@"%@",[self downloadFilePath]);
+
     [_data writeToFile:[self downloadFilePath] atomically:YES];
     //防止最后一次传输proBlock没传输成功。(网速是根据前一秒和后一秒的数据差值来计算,这里是为了防止最后一次没传输过去)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

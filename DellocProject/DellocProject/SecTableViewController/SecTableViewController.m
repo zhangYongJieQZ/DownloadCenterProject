@@ -65,7 +65,7 @@
     [cell registerNotificationCenter:video.mp4_url];
     cell.themeLabel.text = video.title;
     //    [cell.downloadButton normalStatusWithURLString: video.mp4_url];
-    cell.sppedLaebl.text = @"0kb/s";
+    cell.sppedLaebl.text = @"";
 
     [cell.downloadButton addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     return cell;

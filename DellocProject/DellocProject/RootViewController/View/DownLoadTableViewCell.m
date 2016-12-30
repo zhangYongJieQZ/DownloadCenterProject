@@ -18,6 +18,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
 }
 
 //注册通知
@@ -39,7 +40,7 @@
             for (NSDictionary *dit in dataArray) {
                 if ([[dit valueForKey:FMDownloadUrl] isEqualToString:urlString]) {
                     mainQueue(^{
-                        self.downloadButton.downloadStatus = [[dit valueForKey:FMDownloadStatus]integerValue];
+                        self.downloadButton.downloadStatus = [[dit valueForKey:FMDownloadStatus]longValue];
                         self.sppedLaebl.text = [dit valueForKey:FMDownloadSpeed];
                         NSLog(@"self.speedlabel.text = %@",self.sppedLaebl.text);
                         [self.downloadButton calculatePercentWithDownloadSize:[[dit valueForKey:FMDownloadSize]longLongValue] fileSize:[[dit valueForKey:FMFileSize]longLongValue]];
@@ -66,7 +67,7 @@
 
 - (void)pauseDownload:(NSNotification *)notification{
     self.downloadButton.downloadStatus = FileDownloadPause;
-    self.sppedLaebl.text = @"0KB/S";
+    self.sppedLaebl.text = @"";
 }
 
 - (void)finishedDownload:(NSNotification *)notification{
@@ -75,7 +76,7 @@
     }else{
         self.downloadButton.downloadStatus = FileDownloadFailure;
     }
-    self.sppedLaebl.text = @"0KB/S";
+    self.sppedLaebl.text = @"";
 }
 
 - (void)downloading:(NSNotification *)notification{
@@ -92,7 +93,7 @@
         if (value == 0) {
             speedString = @"0KB/S";
         }else{
-            speedString = [NSString stringWithFormat:@"%dB/S",value];
+            speedString = [NSString stringWithFormat:@"%ldB/S",(long)value];
         }
     }
     

@@ -73,14 +73,11 @@ static FileDownloadManager *fileDownloadManager = nil;
             }
             
             
-            [self updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:FileDownloadFinish]} andSearchConditions:@{FMDownloadUrl:urlString}];
+            [self updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:FileDownloadFinish],FMDownloadSpeed:@""} andSearchConditions:@{FMDownloadUrl:urlString}];
             
         } cancelBlock:^{
-            
             [[NSNotificationCenter defaultCenter]postNotificationName:[NSString stringWithFormat:@"%@%@",FileDownloadCancelNotification,urlString] object:nil];
-            
-            [self updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:FileDownloadPause]} andSearchConditions:@{FMDownloadUrl:urlString}];
-            
+            [self updateDataWithKeyAttributesDit:@{FMDownloadStatus:[NSNumber numberWithInteger:FileDownloadPause],FMDownloadSpeed:@""} andSearchConditions:@{FMDownloadUrl:urlString}];
             [self.downloadDit removeObjectForKey:urlString];
         }];
         
@@ -112,16 +109,29 @@ static FileDownloadManager *fileDownloadManager = nil;
 #pragma mark - sql
 
 - (void)insertSqlWithUrlString:(NSString *)urlString{
-    [self.downloadSqlite searchDataWithKeyAttributesDit:@{FMDownloadUrl:urlString} block:^(NSArray *dataArray) {
-        if (dataArray.count == 0) {
-            //需要延时,不然会造成同时访问FMDatabaseQueue报错
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.downloadSqlite insertWithKeyAttributesDit:@{FMDownloadUrl:urlString,FMDownloadSize:[NSNumber numberWithLongLong:0],FMFileSize:[NSNumber numberWithLongLong:0],FMDownloadStatus:[NSNumber numberWithInteger:1],FMDownloadSpeed:@"0KB/S"} andResultBlock:^(BOOL result, NSError *error) {
-                    
-                }];
-            });
-        }
-    }];
+    __block NSArray *ary;
+    //因为block中执行block会有死锁,顾用下列的方法
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_async(group, queue, ^{
+            [self.downloadSqlite searchDataWithKeyAttributesDit:@{FMDownloadUrl:urlString} block:^(NSArray *dataArray) {
+                ary = dataArray;
+            }];
+        });
+        dispatch_group_notify(group, queue, ^{
+            if (ary.count == 0) {
+                //需要延时,不然会造成同时访问FMDatabaseQueue报错
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [self.downloadSqlite insertWithKeyAttributesDit:@{FMDownloadUrl:urlString,FMDownloadSize:[NSNumber numberWithLongLong:0],FMFileSize:[NSNumber numberWithLongLong:0],FMDownloadStatus:[NSNumber numberWithInteger:1],FMDownloadSpeed:@""} andResultBlock:^(BOOL result, NSError *error) {
+                        
+                    }];
+                });
+            }
+        });
+    });
+    
+    
 }
 
 - (void)updateDataWithKeyAttributesDit:(NSDictionary *)attributesDit andSearchConditions:(NSDictionary *)conditionsDit{
